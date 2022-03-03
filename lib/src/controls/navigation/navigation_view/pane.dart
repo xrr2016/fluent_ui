@@ -476,21 +476,21 @@ class _CompactNavigationPane extends StatelessWidget {
           alignment: Alignment.topCenter,
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            () {
-              if (pane.menuButton != null) return pane.menuButton!;
-              if (onToggle != null) {
-                return NavigationPane.buildMenuButton(
-                  context,
-                  Text(FluentLocalizations.of(context).openNavigationTooltip),
-                  pane,
-                  onPressed: () {
-                    onToggle?.call();
-                  },
-                  padding: showReplacement ? EdgeInsets.zero : topPadding,
-                );
-              }
-              return const SizedBox.shrink();
-            }(),
+            // () {
+            //   if (pane.menuButton != null) return pane.menuButton!;
+            //   if (onToggle != null) {
+            //     return NavigationPane.buildMenuButton(
+            //       context,
+            //       Text(FluentLocalizations.of(context).openNavigationTooltip),
+            //       pane,
+            //       onPressed: () {
+            //         onToggle?.call();
+            //       },
+            //       padding: showReplacement ? EdgeInsets.zero : topPadding,
+            //     );
+            //   }
+            //   return const SizedBox.shrink();
+            // }(),
             if (showReplacement)
               Padding(
                 padding: topPadding,
@@ -510,11 +510,15 @@ class _CompactNavigationPane extends StatelessWidget {
                 key: scrollbarKey,
                 controller: pane.scrollController,
                 isAlwaysShown: false,
-                child: ListView(key: listKey, primary: true, children: [
-                  ...pane.items.map((item) {
-                    return _buildItem(context, item);
-                  }),
-                ]),
+                child: ListView(
+                    key: listKey,
+                    primary: true,
+                    padding: const EdgeInsets.only(top: 8.0),
+                    children: [
+                      ...pane.items.map((item) {
+                        return _buildItem(context, item);
+                      }),
+                    ]),
               ),
             ),
             ...pane.footerItems.map((item) {
@@ -644,27 +648,27 @@ class _OpenNavigationPaneState extends State<_OpenNavigationPane>
           pane: widget.pane,
           axis: Axis.horizontal,
           child: Column(key: widget.pane.paneKey, children: [
-            Container(
-              margin: widget.pane.autoSuggestBox != null
-                  ? EdgeInsets.zero
-                  : topPadding,
-              height: kOneLineTileHeight,
-              child: () {
-                if (widget.pane.header != null) {
-                  return Row(children: [
-                    menuButton,
-                    Expanded(
-                      child: Align(
-                        child: widget.pane.header!,
-                        alignment: Alignment.centerLeft,
-                      ),
-                    ),
-                  ]);
-                } else {
-                  return menuButton;
-                }
-              }(),
-            ),
+            // Container(
+            //   margin: widget.pane.autoSuggestBox != null
+            //       ? EdgeInsets.zero
+            //       : topPadding,
+            //   height: kOneLineTileHeight,
+            //   child: () {
+            //     if (widget.pane.header != null) {
+            //       return Row(children: [
+            //         menuButton,
+            //         Expanded(
+            //           child: Align(
+            //             child: widget.pane.header!,
+            //             alignment: Alignment.centerLeft,
+            //           ),
+            //         ),
+            //       ]);
+            //     } else {
+            //       return menuButton;
+            //     }
+            //   }(),
+            // ),
             if (widget.pane.autoSuggestBox != null)
               Container(
                 padding: theme.iconPadding ?? EdgeInsets.zero,
@@ -678,12 +682,16 @@ class _OpenNavigationPaneState extends State<_OpenNavigationPane>
                 key: widget.scrollbarKey,
                 controller: widget.pane.scrollController,
                 isAlwaysShown: false,
-                child: ListView(key: widget.listKey, primary: true, children: [
-                  ...widget.pane.items.map((item) {
-                    return _OpenNavigationPane.buildItem(
-                        context, widget.pane, item, widget.onItemSelected);
-                  }),
-                ]),
+                child: ListView(
+                    key: widget.listKey,
+                    primary: true,
+                    padding: const EdgeInsets.only(top: 8.0),
+                    children: [
+                      ...widget.pane.items.map((item) {
+                        return _OpenNavigationPane.buildItem(
+                            context, widget.pane, item, widget.onItemSelected);
+                      }),
+                    ]),
               ),
             ),
             ...widget.pane.footerItems.map((item) {
