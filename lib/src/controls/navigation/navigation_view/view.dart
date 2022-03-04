@@ -340,7 +340,8 @@ class NavigationViewState extends State<NavigationView> {
                         );
                       } else if (_compactOverlayOpen) {
                         return Mica(
-                          backgroundColor: theme.backgroundColor?.withAlpha(255),
+                          backgroundColor:
+                              theme.backgroundColor?.withAlpha(255),
                           elevation: 10.0,
                           child: Container(
                             decoration: BoxDecoration(
@@ -607,7 +608,7 @@ class NavigationAppBar with Diagnosticable {
     } else {
       return const SizedBox.shrink();
     }
-    widget = SizedBox(width: _kCompactNavigationPanelWidth, child: widget);
+    widget = SizedBox(width: 12.0, child: widget);
     return widget;
   }
 }
