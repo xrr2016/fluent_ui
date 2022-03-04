@@ -25,6 +25,7 @@ class NavigationIndicator extends StatefulWidget {
     required this.axis,
     this.curve = Curves.linear,
     this.color,
+    this.height = 30.0,
   }) : super(key: key);
 
   /// Creates a [StickyNavigationIndicator]
@@ -58,6 +59,7 @@ class NavigationIndicator extends StatefulWidget {
     required NavigationPane pane,
     required Axis axis,
     required Widget child,
+    double? height,
   }) {
     if (pane.selected == null) return child;
     assert(debugCheckHasFluentTheme(context));
@@ -70,6 +72,7 @@ class NavigationIndicator extends StatefulWidget {
       color: theme.highlightColor,
       curve: theme.animationCurve ?? Curves.linear,
       axis: axis,
+      height: height,
     );
   }
 
@@ -94,6 +97,9 @@ class NavigationIndicator extends StatefulWidget {
 
   /// The highlight color
   final Color? color;
+
+  /// Height
+  final double? height;
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -151,6 +157,7 @@ class EndNavigationIndicator extends NavigationIndicator {
     required Axis axis,
     Curve curve = Curves.easeInOut,
     Color? color,
+    double? height = 30.0,
   }) : super(
           key: key,
           axis: axis,
@@ -159,6 +166,7 @@ class EndNavigationIndicator extends NavigationIndicator {
           index: index,
           curve: curve,
           color: color,
+          height: height,
         );
 
   @override
@@ -192,7 +200,7 @@ class _EndNavigationIndicatorState
                   horizontal: isTop ? 10.0 : 0.0,
                 ),
                 width: isTop ? 20.0 : 6.0,
-                height: isTop ? 4.5 : 20.0,
+                height: isTop ? 4.5 : widget.height,
                 color:
                     widget.index != index ? Colors.transparent : widget.color,
               ),
@@ -318,7 +326,7 @@ class _StickyNavigationIndicatorState
       } else {
         // 6.0 of padding
         // return sizes![widget.index].width - widget.topPadding.horizontal - 6.0;
-        return 12.5;
+        return 25.0;
       }
     }();
 
