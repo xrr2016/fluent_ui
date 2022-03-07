@@ -669,6 +669,16 @@ class _OpenNavigationPaneState extends State<_OpenNavigationPane>
             //     }
             //   }(),
             // ),
+
+            if (widget.pane.header != null)
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 6.0,
+                ),
+                child: widget.pane.header!,
+              ),
+
             if (widget.pane.autoSuggestBox != null)
               Container(
                 padding: theme.iconPadding ?? EdgeInsets.zero,

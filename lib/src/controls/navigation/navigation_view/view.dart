@@ -242,17 +242,21 @@ class NavigationViewState extends State<NavigationView> {
                         ? Colors.black
                         : const Color(0xffBCBCBC),
                   ),
-                  borderRadius: const BorderRadiusDirectional.only(
-                    topStart: Radius.circular(8.0),
-                  ).resolve(direction),
                 );
             final Widget content = ClipRect(
               child: pane.displayMode == PaneDisplayMode.minimal
                   ? widget.content
                   : DecoratedBox(
                       position: DecorationPosition.foreground,
-                      decoration: ShapeDecoration(
-                        shape: contentShape,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          left: BorderSide(
+                            width: 0.3,
+                            color: FluentTheme.of(context).brightness.isDark
+                                ? Colors.black
+                                : const Color(0xffBCBCBC),
+                          ),
+                        ),
                       ),
                       child: ClipPath(
                         clipBehavior: widget.clipBehavior,
